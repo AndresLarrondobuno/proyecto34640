@@ -1,10 +1,10 @@
 from django.db import models
 
 class Familiar(models.Model):
-    nombre = models.CharField(max_length=30)
-    edad = models.IntegerField()
-    fecha_de_nacimiento = models.DateField()
+    nombre= models.CharField(max_length=30, default="string")
+    edad= models.IntegerField(default=1)
+    fecha_de_nacimiento= models.DateField(default=1993-12-12)
 
-    def __repr__(self) -> str:
+    def __str__(self):
         return self.nombre
 
