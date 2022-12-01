@@ -1,0 +1,26 @@
+{% extends "padre.html" %}
+
+{% block titulo %}
+Entrenadores
+{% endblock %}
+
+{% block contenido_entrenadores %}
+
+    <h1>Entrenadores</h1>
+
+        <table width="300">
+        <tr style="background-color: rgb(163, 212, 200);">
+            <td><strong>Nombre</strong></td>
+            <td><strong>Cantidad de medallas</strong></td>
+            <td><strong>Region</strong></td>
+        </tr>
+        {% for entrenador in entrenadores %}
+        <tr>
+            <td style="background-color: rgb(216, 216, 216);">{{entrenador.nombre}}</td>
+            <td style="background-color: rgb(216, 216, 216);">{{entrenador.cantidad_de_medallas}}</td>
+            <td style="background-color: rgb(216, 216, 216);">{{entrenador.region}}</td>
+        </tr>        
+        {% endfor %}
+        </table>
+
+{% endblock %}

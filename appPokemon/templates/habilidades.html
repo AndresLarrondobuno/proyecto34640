@@ -1,0 +1,26 @@
+{% extends "padre.html" %}
+
+{% block titulo %}
+Habilidades
+{% endblock %}
+
+
+{% block contenido_habilidades %}
+<body>
+    <h1>Habilidades</h1>
+
+        <table width="300">
+        <tr style="background-color: rgb(163, 212, 200);">
+            <td><strong>Nombre</strong></td>
+            <td><strong>tipo</strong></td>
+        </tr>
+        {% for habilidad in habilidades %}
+        <tr>
+            <td style="background-color: rgb(216, 216, 216);">{{habilidad.nombre}}</td>
+            <td style="background-color: rgb(216, 216, 216);">{{habilidad.tipo}}</td>
+
+        </tr>        
+        {% endfor %}
+        </table>
+</body>
+{% endblock %}

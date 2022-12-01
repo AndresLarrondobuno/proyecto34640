@@ -1,0 +1,12 @@
+{% extends "padre.html" %}
+
+{% block contenido_formulario_entrenador %}
+<form action="{% url 'entrenador_formulario' %}" method="POST"> {% csrf_token %}
+<table>
+
+{{form.as_table}}
+
+</table>
+<input type="submit" value="ENVIAR ENTRENADOR">
+
+{% endblock %}

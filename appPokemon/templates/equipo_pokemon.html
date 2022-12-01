@@ -1,0 +1,28 @@
+{% extends "padre.html" %}
+
+{% block titulo %}
+
+{% endblock %}
+
+
+{% block contenido_equipo_pokemon %}
+<body>
+    <h1>Equipo</h1>
+
+        <table width="300">
+        <tr style="background-color: rgb(163, 212, 200);">
+            <td><strong>Nombre</strong></td>
+            <td><strong>Tipo</strong></td>
+            <td><strong>Nivel</strong></td>
+        </tr>
+        {% for pokemon in pokemons %}
+        <tr>
+            <td style="background-color: rgb(216, 216, 216);">{{pokemon.nombre}}</td>
+            <td style="background-color: rgb(216, 216, 216);">{{pokemon.tipo}}</td>
+            <td style="background-color: rgb(216, 216, 216);">{{pokemon.nivel}}</td>
+        </tr>        
+        {% endfor %}
+        </table>
+    
+</body>
+{% endblock %}
