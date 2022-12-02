@@ -1,0 +1,25 @@
+{% extends "padre.html" %}
+
+
+{% block titulo %}
+<h1>Resultado de busqueda de pokemons</h1>
+{% endblock %}
+
+{% block contenido %}
+
+{% if pokemons %}
+    <ul>
+        {% for pokemon in pokemons %}
+
+            <li> {{ pokemon.nombre }} </li>
+            <li> {{ pokemon.tipo }} </li>
+            <li> {{ pokemon.nivel }} </li>
+            <br>
+
+        {% endfor %}
+    </ul>
+{% else %}
+<p>¡No hay pokemons las caracteristicas ingresadas!</p>
+{% endif %}
+
+{% endblock %}

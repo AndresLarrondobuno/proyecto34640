@@ -2,38 +2,6 @@ from django.shortcuts import render
 from .models import *
 from .forms import *
 
-def familia(request):
-    mabel = Familiar(nombre="Mabel", edad=28, fecha_de_nacimiento="1993-12-12")
-    alberto = Familiar(nombre="Alberto", edad=72, fecha_de_nacimiento="1950-17-3")
-    abigail = Familiar(nombre="Abigail", edad=22, fecha_de_nacimiento="1993-11-2")
-    mi_familia = {'familiares': [mabel, alberto, abigail]}
-    return render(request, 'familiares1.html', mi_familia)
-
-
-def familiaFormulario(request):
-
-    if request.method == "POST":
-        form = familiaForm(request.POST)
-        print("-----")
-        print(form)
-        print("-----")
-        if form.is_valid():
-            informacion = form.cleaned_data
-            print(informacion)
-
-
-            nombrecito = request.POST["nombre"]
-            edadcita = request.POST["edad"]
-            fechita_de_nacimiento = request.POST["fecha_de_nacimiento"]
-
-            miFamiliar = Familiar(nombre=nombrecito, edad=edadcita, fechita_de_nacimiento=fechita_de_nacimiento)
-            miFamiliar.save()
-            return render(request, "appFamilia/inicio.html")
-    else:
-        formulario = familiaForm()
-    
-    return(request, "appFamilia/familiaFormulario.html", {"form":formulario, "mensaje":"POKEMON CREADO CORRECTAMENTE"})
-
 
 def inicio(request):
     return render(request, "inicio.html")
@@ -76,7 +44,7 @@ def pokemon_formulario(request):
 
             pokemon = Pokemon(nombre=nombre_pokemon, tipo=tipo_pokemon, nivel=nivel_pokemon)
             pokemon.save()
-            return render(request, "appPokemon/inicio.html")
+            return render(request, "inicio.html")
     else:
         formulario = PokemonForm()
     
@@ -96,9 +64,9 @@ def entrenador_formulario(request):
             cantidad_de_medallas_entrenador = informacion["cantidad_de_medallas"]
             region_entrenador = informacion["region"]
 
-            entrenador = Entrenador(nombre=nombre_entrenador, tipo=cantidad_de_medallas_entrenador, nivel=region_entrenador)
+            entrenador = Entrenador(nombre=nombre_entrenador, cantidad_de_medallas=cantidad_de_medallas_entrenador, region=region_entrenador)
             entrenador.save()
-            return render(request, "appPokemon/inicio.html")
+            return render(request, "inicio.html")
     else:
         formulario = EntrenadorForm()
     
@@ -119,8 +87,25 @@ def habilidad_formulario(request):
 
             habilidad = Habilidad(nombre=nombre_habilidad, tipo=tipo_habilidad)
             habilidad.save()
-            return render(request, "appPokemon/inicio.html")
+            return render(request, "inicio.html")
     else:
         formulario = HabilidadForm()
     
     return render(request, "habilidad_formulario.html", {"form":formulario, "mensaje":"HABILIDAD CREADA CORRECTAMENTE"})
+
+
+def busqueda_pokemon(request):
+    return render(request, "busqueda_pokemon.html")
+
+
+def buscar(request):
+    if "nombre" in request.GET:
+        nombre = request.GET["nombre"]
+        pokemons = Pokemon.objects.filter(nombre__icontains=nombre) #lista de pokemons con atributo nombre = "nombre"
+        return render(request, "resultado_busqueda.html", {"pokemons":pokemons})
+    else:
+        return render(request, "busqueda_pokemon.html", {"mensaje":"Porfavor ingresa un TIPO de pokemon"})
+
+
+    
+

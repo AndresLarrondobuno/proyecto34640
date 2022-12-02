@@ -1,0 +1,19 @@
+{% extends "padre.html" %}
+
+
+{% block titulo %}
+<h1>Formulario de busqueda de pokemons</h1>
+{% endblock %}
+
+{% block contenido %}
+<form action="{% url 'buscar' %}" method="GET"> {% csrf_token %}
+    <table>
+
+    <input type="text" name="nombre" id="nombre">
+    <input type="submit" value="buscar">
+
+    </table>
+</form>
+{{ mensaje }}
+
+{% endblock %}

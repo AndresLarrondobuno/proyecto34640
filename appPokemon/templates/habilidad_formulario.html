@@ -1,7 +1,7 @@
 {% extends "padre.html" %}
 
-{% block contenido_formulario_habilidad %}
-<form action="{% url 'pokemon_formulario' %}" method="POST"> {% csrf_token %}
+{% block contenido %}
+<form action="{% url 'habilidad_formulario' %}" method="POST"> {% csrf_token %}
 <table>
 
 {{form.as_table}}
